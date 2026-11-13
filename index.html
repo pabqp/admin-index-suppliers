@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090a0e">
+<meta name="description" content="Catálogo unificado: búsqueda y comparación de productos de NBM y ResellMe.">
+<title>INDEX — Digital catalogue</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{
+ --bg:#090a0e;--surface:#101219;--surface2:#151821;--surface3:#1b1f2a;--line:rgba(255,255,255,.085);
+ --text:#f3f4f7;--muted:#858b9a;--soft:#b5bac6;--violet:#a995ff;--mint:#79e2ce;
+ --radius:20px;--ease:cubic-bezier(.2,.75,.2,1);--shadow:0 24px 80px rgba(0,0,0,.36)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Manrope,Inter,system-ui,sans-serif;background:
+ radial-gradient(ellipse at 8% 0%,rgba(122,96,255,.13),transparent 32%),
+ radial-gradient(ellipse at 92% 34%,rgba(52,201,177,.07),transparent 30%),var(--bg);
+ -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 88%);z-index:-1}
+button,input,select{font:inherit}
+button{color:inherit}
+.aurora{position:fixed;width:38vw;height:38vw;min-width:280px;min-height:280px;border-radius:50%;filter:blur(100px);opacity:.11;pointer-events:none;z-index:-1;animation:float 22s ease-in-out infinite alternate}
+.aurora.a{background:#8064ff;top:2%;left:-20%}.aurora.b{background:#28c9b0;right:-22%;top:48%;animation-delay:-9s}
+@keyframes float{to{transform:translate(8vw,-5vh) scale(1.16)}}
+.wrap{width:min(1180px,calc(100% - 44px));margin:auto;padding:34px 0 76px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:76px;animation:rise .7s var(--ease) both}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.brand-mark{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#b6a5ff,#7160d9);color:#100e1b;box-shadow:0 8px 30px #7862e944}
+.brand-mark svg{width:20px}
+.brand-name{font-size:13px;font-weight:800;letter-spacing:.19em}
+.brand-sub{font:10px 'DM Mono',monospace;color:var(--muted);letter-spacing:.1em;margin-top:3px}
+.top-note{font:10px 'DM Mono',monospace;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:9px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px #79e2ce;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35;box-shadow:0 0 2px #79e2ce}}
+.hero{max-width:850px;margin:0 auto 34px;text-align:center;animation:rise .8s .06s var(--ease) both}
+.eyebrow{font:10px 'DM Mono',monospace;color:var(--violet);letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px}
+.eyebrow:before,.eyebrow:after{content:"";width:24px;height:1px;background:linear-gradient(90deg,transparent,var(--violet))}
+.eyebrow:after{transform:rotate(180deg)}
+h1{font-size:clamp(38px,7vw,76px);line-height:.99;letter-spacing:-.075em;margin:0;font-weight:800}
+h1 span{background:linear-gradient(100deg,#fff 10%,#bdb0ff 55%,#7fe0d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:19px auto 0;color:var(--muted);font-size:13px;line-height:1.8;max-width:500px}
+.stats{display:flex;justify-content:center;gap:26px;margin-top:26px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:7px;color:var(--muted);font:10px 'DM Mono',monospace;letter-spacing:.06em}
+.stat strong{font:600 12px Manrope,sans-serif;color:var(--text)}
+.search-panel{position:relative;max-width:920px;margin:0 auto;z-index:3;animation:rise .8s .12s var(--ease) both}
+.searchbox{height:68px;display:flex;align-items:center;gap:14px;padding:0 21px;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:linear-gradient(120deg,rgba(25,27,39,.96),rgba(15,17,24,.96));box-shadow:0 18px 70px #0007,inset 0 1px rgba(255,255,255,.07);backdrop-filter:blur(24px);transition:.35s var(--ease)}
+.searchbox:focus-within{border-color:#a995ff99;box-shadow:0 20px 75px #7862e92b,0 0 0 4px #a995ff12,inset 0 1px #ffffff18;transform:translateY(-2px)}
+.search-icon{color:#a9a4c5;flex:none;width:20px}
+#q{border:0;outline:0;background:transparent;color:var(--text);width:100%;min-width:0;font-size:15px;font-weight:600;letter-spacing:-.02em}
+#q::placeholder{color:#777d8b;font-weight:500}
+.kbd{font:10px 'DM Mono',monospace;color:#777d8b;border:1px solid var(--line);border-radius:6px;padding:5px 7px;white-space:nowrap}
+.clear{border:0;background:#ffffff0d;border-radius:9px;width:30px;height:30px;display:grid;place-items:center;color:var(--soft);cursor:pointer;opacity:0;pointer-events:none;transform:scale(.8);transition:.2s}
+.clear.show{opacity:1;pointer-events:auto;transform:scale(1)}
+.filters{margin-top:12px;padding:17px;border:1px solid var(--line);border-radius:17px;background:rgba(16,18,25,.82);backdrop-filter:blur(20px);display:grid;grid-template-columns:1.1fr 1.4fr 1.2fr auto;gap:12px;align-items:end;box-shadow:0 12px 45px #0002}
+.filter-group{min-width:0}
+.filter-label{display:block;margin:0 0 8px 2px;color:#858b9a;font:9px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase}
+.select-wrap{position:relative}
+select,.price-input{height:40px;width:100%;border:1px solid var(--line);border-radius:10px;background:#ffffff08;color:var(--text);outline:none;padding:0 12px;font-size:11px;transition:border-color .2s,background .2s}
+select:focus,.price-input:focus{border-color:#a995ff88;background:#a995ff0c}
+select option{background:#151821;color:white}
+.price-range{display:flex;gap:7px}
+.price-input{font-family:'DM Mono',monospace}
+.price-input::placeholder{color:#646b79}
+.reset{height:40px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:#ffffff08;color:#aeb3c0;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;transition:.25s}
+.reset:hover{border-color:#a995ff77;color:white;background:#a995ff12}
+.filter-bottom{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--line);margin-top:1px}
+.check-label{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:10px;cursor:pointer}
+.check-label input{accent-color:#a995ff}
+.active-filters{color:#a995ff;font:9px 'DM Mono',monospace;letter-spacing:.08em}
+.content{max-width:1120px;margin:47px auto 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:17px}
+.section-kicker{font:9px 'DM Mono',monospace;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
+.section-title{font-size:20px;letter-spacing:-.05em;font-weight:800}
+.result-count{font:10px 'DM Mono',monospace;color:var(--muted)}
+.result-count strong{color:var(--text);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{position:relative;min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(25,28,38,.94),rgba(15,17,23,.96));padding:17px;display:flex;flex-direction:column;min-height:180px;opacity:0;transform:translateY(14px) scale(.985);animation:card-in .48s var(--ease) forwards;transition:border-color .28s,transform .3s var(--ease),box-shadow .3s,background .3s}
+.card:before{content:"";position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 100% 0%,#a995ff16,transparent 55%);transition:opacity .35s;pointer-events:none}
+.card:hover{transform:translateY(-4px);border-color:#a995ff66;box-shadow:0 18px 42px #0005;background:linear-gradient(145deg,#1c1f2b,#11141c)}
+.card:hover:before{opacity:1}
+@keyframes card-in{to{opacity:1;transform:translateY(0) scale(1)}}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;position:relative}
+.store{display:inline-flex;align-items:center;gap:7px;font:9px 'DM Mono',monospace;letter-spacing:.1em;color:#aeb4c1;text-transform:uppercase}
+.store-mark{width:7px;height:7px;border-radius:2px;background:var(--mint);box-shadow:0 0 10px #79e2ce66}
+.store.resell .store-mark{background:var(--violet);box-shadow:0 0 10px #a995ff77}
+.product-index{font:9px 'DM Mono',monospace;color:#535968}
+.product-name{font-size:13px;line-height:1.55;font-weight:700;letter-spacing:-.025em;margin:17px 0 12px;overflow-wrap:anywhere;position:relative}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;position:relative}
+.tag{font:8px 'DM Mono',monospace;letter-spacing:.04em;color:#a4aaba;border:1px solid #ffffff12;border-radius:5px;padding:4px 6px;background:#ffffff05}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:17px;padding-top:12px;border-top:1px solid #ffffff0d;position:relative}
+.price{font-size:18px;font-weight:800;letter-spacing:-.055em;color:#e6e0ff;white-space:nowrap}
+.price small{font:9px 'DM Mono',monospace;color:#777d8b;letter-spacing:0;margin-left:2px}
+.card-actions{display:flex;gap:6px}
+.icon-btn{height:30px;width:30px;display:grid;place-items:center;border:1px solid #ffffff13;border-radius:9px;background:#ffffff08;color:#aeb4c1;cursor:pointer;transition:.2s}
+.icon-btn:hover{color:white;border-color:#a995ff88;background:#a995ff17;transform:translateY(-2px)}
+.icon-btn svg{width:14px;height:14px}
+.empty-state{display:none;text-align:center;padding:72px 20px;border:1px dashed #ffffff20;border-radius:18px;background:#ffffff04}
+.empty-state.show{display:block;animation:rise .35s var(--ease)}
+.empty-symbol{width:48px;height:48px;border:1px solid #ffffff18;border-radius:15px;margin:0 auto 15px;display:grid;place-items:center;color:#a995ff;font-size:20px}
+.empty-state h3{font-size:16px;margin:0 0 7px}.empty-state p{font-size:11px;color:var(--muted);margin:0}
+.footer{margin-top:58px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;color:#646b79;font:9px 'DM Mono',monospace;letter-spacing:.07em}
+.modal-backdrop{position:fixed;inset:0;background:#05060bd9;backdrop-filter:blur(12px);z-index:20;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .25s}
+.modal-backdrop.open{display:flex;opacity:1}
+.modal{width:min(560px,100%);border:1px solid #ffffff1a;border-radius:22px;background:linear-gradient(145deg,#1b1e29,#101219);box-shadow:0 35px 110px #000a;transform:translateY(18px) scale(.98);transition:transform .3s var(--ease);overflow:hidden}
+.modal-backdrop.open .modal{transform:translateY(0) scale(1)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:19px 21px;border-bottom:1px solid var(--line)}
+.modal-kicker{font:9px 'DM Mono',monospace;letter-spacing:.16em;color:var(--violet);text-transform:uppercase}
+.modal-close{border:1px solid var(--line);background:#ffffff08;color:#aeb4c1;width:30px;height:30px;border-radius:9px;cursor:pointer}
+.modal-body{padding:25px}
+.modal-store{font:9px 'DM Mono',monospace;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.modal h2{font-size:clamp(21px,4vw,30px);line-height:1.25;letter-spacing:-.055em;margin:13px 0 23px;overflow-wrap:anywhere}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.detail{border:1px solid var(--line);border-radius:12px;padding:13px;background:#ffffff04}
+.detail label{display:block;font:8px 'DM Mono',monospace;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+.detail strong{font-size:14px;overflow-wrap:anywhere}
+.url-box{margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#080a10}
+.url-box label{display:block;font:8px 'DM Mono',monospace;color:var(--muted);letter-spacing:.13em;margin-bottom:7px}
+.url-text{font:10px 'DM Mono',monospace;color:#b9b1eb;overflow-wrap:anywhere;line-height:1.6}
+.modal-actions{display:flex;gap:9px;margin-top:17px}
+.action{flex:1;min-height:43px;border-radius:11px;border:1px solid #ffffff17;background:#ffffff08;color:var(--text);font-size:10px;font-weight:800;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.2s}
+.action.primary{background:linear-gradient(110deg,#b6a5ff,#8f7bea);color:#100e19;border:0;box-shadow:0 8px 25px #927bff33}
+.action:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.toast{position:fixed;bottom:24px;left:50%;z-index:30;transform:translate(-50%,18px);opacity:0;pointer-events:none;padding:11px 16px;border:1px solid #ffffff20;border-radius:10px;background:#1b1e29;color:white;font:10px 'DM Mono',monospace;box-shadow:var(--shadow);transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}.filter-bottom{grid-column:1/-1}}
+@media(max-width:560px){
+ .wrap{width:calc(100% - 26px);padding-top:20px}.topbar{margin-bottom:57px}.top-note{font-size:8px}
+ .hero{margin-bottom:25px}h1{font-size:46px}.hero p{font-size:11px}
+ .stats{gap:13px}.stat{font-size:8px}.stat strong{font-size:10px}
+ .searchbox{height:59px;padding:0 15px;border-radius:15px}.kbd{display:none}
+ .filters{padding:12px;gap:9px;border-radius:14px}.filter-label{font-size:8px}.price-input,select{height:38px;font-size:10px;padding:0 9px}
+ .reset{height:38px;font-size:9px;padding:0 10px}.filter-bottom{align-items:flex-start;gap:10px;flex-direction:column}
+ .content{margin-top:36px}.section-title{font-size:18px}.grid{grid-template-columns:1fr;gap:9px}
+ .card{min-height:155px;padding:15px}.product-name{font-size:13px;margin:13px 0 10px}.price{font-size:17px}
+ .footer{font-size:8px;flex-direction:column}.modal-body{padding:19px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="aurora a"></div><div class="aurora b"></div>
+<div class="wrap">
+ <header class="topbar">
+  <a class="brand" href="#" aria-label="Index home">
+   <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7.5 12 4l7 3.5v9L12 20l-7-3.5v-9Z" stroke="currentColor" stroke-width="1.7"/><path d="m5.5 7.8 6.5 3.4 6.5-3.4M12 11.2V20" stroke="currentColor" stroke-width="1.5"/></svg></span>
+   <span><span class="brand-name">INDEX</span><span class="brand-sub">DIGITAL CATALOGUE</span></span>
+  </a>
+  <div class="top-note"><span class="live-dot"></span> TWO STORES · ONE SEARCH</div>
+ </header>
+ <section class="hero">
+  <div class="eyebrow">THE UNIFIED MARKET INDEX</div>
+  <h1>Find your next<br><span>digital essential.</span></h1>
+  <p>Un catálogo. Dos tiendas. Encuentra, filtra y compara productos en segundos.</p>
+  <div class="stats">
+   <div class="stat"><strong id="totalStat">230</strong> PRODUCTOS</div>
+   <div class="stat"><strong>02</strong> TIENDAS</div>
+   <div class="stat"><strong>€</strong> PRECIOS EN EUR</div>
+  </div>
+ </section>
+ <section class="search-panel" aria-label="Búsqueda y filtros">
+  <div class="searchbox">
+   <svg class="search-icon" viewBox="0 0 24 24" fill="none"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+   <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Busca por nombre, servicio, categoría…" aria-label="Buscar productos">
+   <span class="kbd">ENTER</span>
+   <button class="clear" id="clear" aria-label="Limpiar búsqueda">✕</button>
+  </div>
+  <div class="filters">
+   <div class="filter-group"><label class="filter-label" for="store">Tienda</label><select id="store"><option value="all">Todas las tiendas</option><option value="NBM">Nebula Market · NBM</option><option value="ResellMe">ResellMe</option></select></div>
+   <div class="filter-group"><span class="filter-label">Rango de precio (€)</span><div class="price-range"><input class="price-input" id="minPrice" type="number" min="0" step=".01" placeholder="Mínimo" aria-label="Precio mínimo"><input class="price-input" id="maxPrice" type="number" min="0" step=".01" placeholder="Máximo" aria-label="Precio máximo"></div></div>
+   <div class="filter-group"><label class="filter-label" for="sort">Ordenar por</label><select id="sort"><option value="relevance">Relevancia / original</option><option value="low">Precio: menor a mayor</option><option value="high">Precio: mayor a menor</option><option value="az">Nombre: A–Z</option><option value="za">Nombre: Z–A</option></select></div>
+   <button class="reset" id="reset">↺ Reiniciar</button>
+   <div class="filter-bottom">
+    <label class="check-label"><input id="compact" type="checkbox"> Vista compacta</label>
+    <span class="active-filters" id="filterStatus">MOSTRANDO TODO EL CATÁLOGO</span>
+   </div>
+  </div>
+ </section>
+ <main class="content">
+  <div class="section-head"><div><div class="section-kicker">CURATED DISCOVERY</div><div class="section-title">Explorar catálogo</div></div><div class="result-count"><strong id="count">230</strong> resultados</div></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="empty"><div class="empty-symbol">⌕</div><h3>No encontramos resultados</h3><p>Prueba con otro término o ajusta los filtros de búsqueda.</p></div>
+ </main>
+ <footer class="footer"><span>INDEX / PRODUCT DISCOVERY</span><span>DATOS DE CATÁLOGO · NBM + RESELLME</span></footer>
+</div>
+<div class="modal-backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal">
+  <div class="modal-head"><span class="modal-kicker">PRODUCT DETAILS</span><button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button></div>
+  <div class="modal-body">
+   <div class="modal-store" id="modalStore"></div><h2 id="modalTitle"></h2>
+   <div class="detail-grid"><div class="detail"><label>Precio listado</label><strong id="modalPrice"></strong></div><div class="detail"><label>Tienda de origen</label><strong id="modalSource"></strong></div><div class="detail"><label>Categoría estimada</label><strong id="modalCategory"></strong></div><div class="detail"><label>Moneda</label><strong>EUR · Euro</strong></div></div>
+   <div class="url-box"><label>ENLACE DE PRODUCTO</label><div class="url-text" id="modalUrl"></div></div>
+   <div class="modal-actions"><a class="action primary" id="visitLink" href="#" target="_blank" rel="noopener noreferrer">Visitar producto ↗</a><button class="action" id="copyLink">Copiar enlace</button></div>
+  </div>
+ </div>
+</div>
+<div class="toast" id="toast">Enlace copiado</div>
+<script id="catalog" type="application/json">[{"name":"Nitro Boost 1m","price":"4.35 €","url":"https://nebulamarket.xyz/product/nitro-boost-1m","source":"NBM","order":0},{"name":"Nitro Boost 1 Year","price":"34.56 €","url":"https://nebulamarket.xyz/product/nitro-boost-1year","source":"NBM","order":1},{"name":"Nitro Basic 1m","price":"1.45 €","url":"https://nebulamarket.xyz/product/nitro-basic-1m","source":"NBM","order":2},{"name":"Spotify Premium Keys [LIFETIME]","price":"4.35 €","url":"https://nebulamarket.xyz/product/spotify-premium-keys-lifetime","source":"NBM","order":3},{"name":"Spotify Premium Lifetime FA","price":"0.69 €","url":"https://nebulamarket.xyz/product/spotify-premium-lifetime","source":"NBM","order":4},{"name":"Netflix Lifetime","price":"0.29 €","url":"https://nebulamarket.xyz/product/netflix-lifetime","source":"NBM","order":5},{"name":"[ RANDOM SUB] Netflix Login Keys Lifetime [ Lifetime Warranty + Auto Replace]","price":"1.15 €","url":"https://nebulamarket.xyz/product/netflix-login-keys-lifetime","source":"NBM","order":6},{"name":"[ 4K SUB] Netflix Login Keys Lifetime [ Lifetime Warranty + Auto Replace]","price":"1.99 €","url":"https://nebulamarket.xyz/product/netflix-login-keys-lifetime-4k","source":"NBM","order":7},{"name":"Netflix Lifetime [ES COUNTRY]","price":"0.65 €","url":"https://nebulamarket.xyz/product/netflix-lifetime-es","source":"NBM","order":8},{"name":"Chatgpt+ Lifetime FA [Real Account]","price":"8.65 €","url":"https://nebulamarket.xyz/product/chatgpt-lifetime-accounts-fa","source":"NBM","order":9},{"name":"Nitro Tokens 1 Month","price":"0.60 €","url":"https://nebulamarket.xyz/product/nitro-tokens-1m-1","source":"NBM","order":10},{"name":"Nitro Tokens 3 Month [FA]","price":"1.55 €","url":"https://nebulamarket.xyz/product/nitro-tokens-3m-fa","source":"NBM","order":11},{"name":"14x Server Boosts [ 1 Month ]","price":"4.20 €","url":"https://nebulamarket.xyz/product/14x-server-boosts--1-month","source":"NBM","order":12},{"name":"14x Server Boosts [ 3 month ]","price":"7.45 €","url":"https://nebulamarket.xyz/product/14x-server-boosts-3-month-","source":"NBM","order":13},{"name":"Discord Decoration [4.99-5.99€] [Tier 1]","price":"1.69 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier1","source":"NBM","order":14},{"name":"Discord Decoration [5.99-7.99€] [Tier 2]","price":"1.99 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier2","source":"NBM","order":15},{"name":"Discord Decoration [6.99-8.99€] [Tier 3]","price":"2.89 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier3","source":"NBM","order":16},{"name":"Discord Decoration [7.99-9.99€] [Tier 4]","price":"3.19 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier4","source":"NBM","order":17},{"name":"Discord Decoration [8.99-10.99€] [Tier 5]","price":"3.59 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier5","source":"NBM","order":18},{"name":"Discord Decoration [9.99-12.99€] [Tier 6]","price":"4.29 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier6","source":"NBM","order":19},{"name":"Discord Decoration [11.99-15.99€] [Tier 7]","price":"5.29 €","url":"https://nebulamarket.xyz/product/discord-decoration-tier7","source":"NBM","order":20},{"name":"Discord Random Decorations","price":"1.69 €","url":"https://nebulamarket.xyz/product/discord-random-decorations","source":"NBM","order":21},{"name":"Youtube Premium Lifetime FA","price":"1.35 €","url":"https://nebulamarket.xyz/product/youtube-premium-lifetime","source":"NBM","order":22},{"name":"Gemini+ [12 Months]","price":"4.15 €","url":"https://nebulamarket.xyz/product/gemini-pro-key-12-months","source":"NBM","order":23},{"name":"Gemini+ [6 Months] (No CC required)","price":"4.85 €","url":"https://nebulamarket.xyz/product/gemini-pro-6-months","source":"NBM","order":24},{"name":"[ ROBLOX ] 1,000 – 2,500 Robux","price":"2.70 €","url":"https://nebulamarket.xyz/product/-roblox-1000-2500","source":"NBM","order":25},{"name":"[ ROBLOX ] 2,500-5,000 Robux","price":"4.20 €","url":"https://nebulamarket.xyz/product/roblox-2500-5000","source":"NBM","order":26},{"name":"[ ROBLOX ] 5,000-10,000 Robux","price":"7.20 €","url":"https://nebulamarket.xyz/product/roblox-5000-10000","source":"NBM","order":27},{"name":"[ ROBLOX ] 10,000-15,000 Robux","price":"9.95 €","url":"https://nebulamarket.xyz/product/roblox-10000-15000","source":"NBM","order":28},{"name":"[ ROBLOX ] 15,000-25,000 Robux","price":"12.95 €","url":"https://nebulamarket.xyz/product/roblox-15000-25000","source":"NBM","order":29},{"name":"[ ROBLOX ] 25,000-50,000 Robux","price":"18.20 €","url":"https://nebulamarket.xyz/product/roblox-25000-50000","source":"NBM","order":30},{"name":"[ FN ] 3-10 Skins [ Ranked Ready ]","price":"0.65 €","url":"https://nebulamarket.xyz/product/-fn-3-10-skins-ranked-ready-","source":"NBM","order":31},{"name":"[ FN ] 10-20 Skins","price":"1.55 €","url":"https://nebulamarket.xyz/product/-fn-10-20-skins","source":"NBM","order":32},{"name":"[ FN ] 20-50 Skins","price":"2.45 €","url":"https://nebulamarket.xyz/product/-fn-20-50-skins","source":"NBM","order":33},{"name":"[ FN OG ] 50-100 Skins","price":"3.90 €","url":"https://nebulamarket.xyz/product/-fn-og-50-100-skins","source":"NBM","order":34},{"name":"[ FN OG ] 100-150 Skins","price":"7.75 €","url":"https://nebulamarket.xyz/product/-fn-og-100-150-skins","source":"NBM","order":35},{"name":"[ FN Tryhard ] 100-250 Skins","price":"9.95 €","url":"https://nebulamarket.xyz/product/-fn-tryhard-100-250-skins","source":"NBM","order":36},{"name":"[ FN OG ] 150-250 Skins","price":"11.65 €","url":"https://nebulamarket.xyz/product/-fn-og-150-250-skins","source":"NBM","order":37},{"name":"[ FN OG STW ] 100-200 Skins","price":"12.05 €","url":"https://nebulamarket.xyz/product/-fn-og-stw-100-200-skins","source":"NBM","order":38},{"name":"[ FN Leviathan Axe ] 50-150 Skins","price":"18.25 €","url":"https://nebulamarket.xyz/product/-fn-leviathan-axe-100-200-skins","source":"NBM","order":39},{"name":"[ FN OG ] 250-400 Skins","price":"19.20 €","url":"https://nebulamarket.xyz/product/-fn-og-250-400-skins","source":"NBM","order":40},{"name":"[ FN OG Minty Axe ] 50-200 Skins","price":"19.45 €","url":"https://nebulamarket.xyz/product/-fn-og-minty-axe-100-250-skins","source":"NBM","order":41},{"name":"[ FN Travis Scott ] 100-250 Skins","price":"25.85 €","url":"https://nebulamarket.xyz/product/-fn-travis-scott-100-250-skins","source":"NBM","order":42},{"name":"[ FN OG ] 400-600 Skins","price":"34.50 €","url":"https://nebulamarket.xyz/product/-fn-og-400-600-skins","source":"NBM","order":43},{"name":"[ FN Black Knight ] 50-250 Skins","price":"55.85 €","url":"https://nebulamarket.xyz/product/-fn-black-knight-50-250-skins","source":"NBM","order":44},{"name":"[ 800-1200 ] Fortnite V-Bucks Account","price":"2.45 €","url":"https://nebulamarket.xyz/product/-800-1200-fortnite-v-bucks-account","source":"NBM","order":45},{"name":"[ 1500-2800 ] Fortnite V-Bucks Account","price":"4.90 €","url":"https://nebulamarket.xyz/product/-1500-2800-fortnite-v-bucks-account","source":"NBM","order":46},{"name":"[ VALORANT EU ] – Level 1-20 [ Ranked Ready ]","price":"2.95 €","url":"https://nebulamarket.xyz/product/-valorant-eu-level-1-20-ranked-ready-","source":"NBM","order":47},{"name":"[ VALORANT EU ] Skins Inventory: 1000VP - 3000VP","price":"7.40 €","url":"https://nebulamarket.xyz/product/-valorant-eu-skins-knife-inventory-1000vp-3000vp","source":"NBM","order":48},{"name":"[ VALORANT EU ] Skins Inventory: 2000VP - 5000VP","price":"9.55 €","url":"https://nebulamarket.xyz/product/-valorant-eu-skins-knife-inventory-2000vp-5000vp","source":"NBM","order":49},{"name":"[ VALORANT EU ] Skins + Knife Inventory: 3000VP - 10000VP","price":"14.95 €","url":"https://nebulamarket.xyz/product/-valorant-eu-skins-knife-inventory-3000vp-10000vp","source":"NBM","order":50},{"name":"[ VALORANT EU ] Skins + Knife Inventory: 5000VP - 20000VP","price":"20.95 €","url":"https://nebulamarket.xyz/product/-valorant-eu-skins-knife-inventory-5000vp-20000vp","source":"NBM","order":51},{"name":"[ VALORANT EU ] Skins + Knife Inventory: 30000 - 55000VP","price":"34.55 €","url":"https://nebulamarket.xyz/product/-valorant-eu-skins-knife-inventory-30000-55000vp","source":"NBM","order":52},{"name":"[ BRAWL ] 5.000 - 15.000 Trophies","price":"6.50 €","url":"https://nebulamarket.xyz/product/-brawl-5000-15000-trophies","source":"NBM","order":53},{"name":"[ BRAWL ] 15.000 - 30.000 Trophies","price":"10.50 €","url":"https://nebulamarket.xyz/product/brawl-15k-30k","source":"NBM","order":54},{"name":"[ BRAWL ] 30.000 - 50.000 Trophies","price":"15.50 €","url":"https://nebulamarket.xyz/product/brawl-30k-50k","source":"NBM","order":55},{"name":"[ BRAWL ] 50.000 - 70.000 Trophies","price":"18.20 €","url":"https://nebulamarket.xyz/product/brawl-50k-70k","source":"NBM","order":56},{"name":"[ BRAWL ] +70.000 Trophies","price":"28.50 €","url":"https://nebulamarket.xyz/product/brawl-70k","source":"NBM","order":57},{"name":"[ CS2 PRIME ] 0-300Hrs","price":"8.20 €","url":"https://nebulamarket.xyz/product/-cs2-prime-0-300hrs","source":"NBM","order":58},{"name":"[ CS2 PRIME ] 1100-4000Hrs","price":"17.90 €","url":"https://nebulamarket.xyz/product/-cs2-prime-1100-4000h","source":"NBM","order":59},{"name":"[CS2] 5000+ Hours","price":"1.95 €","url":"https://nebulamarket.xyz/product/cs2-5000-hours","source":"NBM","order":60},{"name":"[CS2] 10000+ Hours","price":"3.95 €","url":"https://nebulamarket.xyz/product/cs2-10000-hours","source":"NBM","order":61},{"name":"[ CLASH ROYALE ] 1000-2500 Trophies","price":"0.70 €","url":"https://nebulamarket.xyz/product/-clash-royale-1000-2500-trophies","source":"NBM","order":62},{"name":"[ CLASH ROYALE ] 2500-5000 Trophies","price":"1.60 €","url":"https://nebulamarket.xyz/product/clash-royale-2500-5000","source":"NBM","order":63},{"name":"[ CLASH ROYALE ] 5000-7000 Trophies","price":"2.90 €","url":"https://nebulamarket.xyz/product/clash-royale-5000-7000","source":"NBM","order":64},{"name":"[ CLASH ROYALE ] 7000-10000 Trophies","price":"4.20 €","url":"https://nebulamarket.xyz/product/clash-royale-7000-10000","source":"NBM","order":65},{"name":"[ CLASH ROYALE ] 10000-12000 Trophies","price":"6.99 €","url":"https://nebulamarket.xyz/product/clash-royale-10000-12000","source":"NBM","order":66},{"name":"[ APEX ] Level 20-100 [ Ranked Ready ]","price":"1.99 €","url":"https://nebulamarket.xyz/product/-apex-level-20-100-ranked-ready-","source":"NBM","order":67},{"name":"[ APEX ] Level 100-300","price":"10.35 €","url":"https://nebulamarket.xyz/product/apex-level-100-300","source":"NBM","order":68},{"name":"[ APEX ] Level 300-500","price":"17.85 €","url":"https://nebulamarket.xyz/product/apex-level-300-500","source":"NBM","order":69},{"name":"ChatGPT FA Unlimited [1 Day]","price":"0.85 €","url":"https://nebulamarket.xyz/product/chatgpt-unlimited-1-day","source":"NBM","order":70},{"name":"ChatGPT FA Unlimited [7 Day]","price":"2.55 €","url":"https://nebulamarket.xyz/product/chatgpt-unlimited-7-day","source":"NBM","order":71},{"name":"ChatGPT FA Unlimited [1 Month]","price":"5.95 €","url":"https://nebulamarket.xyz/product/chatgpt-unlimited-1-month","source":"NBM","order":72},{"name":"Minecraft Account (Full Access)","price":"3.15 €","url":"https://nebulamarket.xyz/product/minecraft-accounts","source":"NBM","order":73},{"name":"Claude FA Unlimited [1 Day]","price":"1.99 €","url":"https://nebulamarket.xyz/product/claude-unlimited-1-day","source":"NBM","order":74},{"name":"Claude FA Unlimited [7 Days]","price":"7.25 €","url":"https://nebulamarket.xyz/product/claude-unlimited-7-days","source":"NBM","order":75},{"name":"Claude FA Unlimited [1 Month]","price":"15.75 €","url":"https://nebulamarket.xyz/product/claude-unlimited-1-month","source":"NBM","order":76},{"name":"Dazn Random Sub","price":"0.39 €","url":"https://nebulamarket.xyz/product/dazn-random","source":"NBM","order":77},{"name":"Dazn [SPAIN]","price":"0.45 €","url":"https://nebulamarket.xyz/product/dazn-spain","source":"NBM","order":78},{"name":"Dazn [ITALY]","price":"0.45 €","url":"https://nebulamarket.xyz/product/dazn-italy","source":"NBM","order":79},{"name":"Dazn [GERMANY]","price":"0.59 €","url":"https://nebulamarket.xyz/product/dazn-germany","source":"NBM","order":80},{"name":"Dazn [FRANCE]","price":"0.60 €","url":"https://nebulamarket.xyz/product/dazn-france","source":"NBM","order":81},{"name":"Dazn [SPAIN TOTAL]","price":"0.89 €","url":"https://nebulamarket.xyz/product/dazn-spain-total","source":"NBM","order":82},{"name":"Prime Video Lifetime FA","price":"0.99 €","url":"https://nebulamarket.xyz/product/prime-video-lifetime","source":"NBM","order":83},{"name":"Prime Video FA [6 Months]","price":"2.65 €","url":"https://nebulamarket.xyz/product/prime-video-fa-6-months","source":"NBM","order":84},{"name":"Movistar+ (LaLiga+) [LIFETIME]","price":"0.80 €","url":"https://nebulamarket.xyz/product/movistar-laliga-lifetime","source":"NBM","order":85},{"name":"Nord VPN Lifetime","price":"0.62 €","url":"https://nebulamarket.xyz/product/nord-vpn-lifetime","source":"NBM","order":86},{"name":"Disney+ Random Sub","price":"0.15 €","url":"https://nebulamarket.xyz/product/disney-lifetime","source":"NBM","order":87},{"name":"Disney+ [DISNEY+ [+] HULU]","price":"0.25 €","url":"https://nebulamarket.xyz/product/disney-disney-hulu","source":"NBM","order":88},{"name":"Disney+ [DISNEY+ [+] HULU [+] ESPN+]","price":"0.75 €","url":"https://nebulamarket.xyz/product/disney-disney-hulu-espn","source":"NBM","order":89},{"name":"HboMax Lifetime","price":"0.39 €","url":"https://nebulamarket.xyz/product/hbomax-lifetime","source":"NBM","order":90},{"name":"Surfshark VPN Keys [ Lifetime Warranty + Auto Replace]","price":"1.25 €","url":"https://nebulamarket.xyz/product/surfshark-vpn-keys","source":"NBM","order":91},{"name":"Discord Real Server Members [500]","price":"2.65 €","url":"https://nebulamarket.xyz/product/discord-real-server-members-500","source":"NBM","order":92},{"name":"Discord Real Server Members [1000]","price":"4.25 €","url":"https://nebulamarket.xyz/product/discord-real-server-members-1000","source":"NBM","order":93},{"name":"Discord Real Server Members [2000]","price":"7.88 €","url":"https://nebulamarket.xyz/product/discord-real-server-members-2000","source":"NBM","order":94},{"name":"Discord Real Server Members [3000]","price":"11.63 €","url":"https://nebulamarket.xyz/product/discord-real-server-members-3000","source":"NBM","order":95},{"name":"Discord Real Server Members [4000]","price":"12.24 €","url":"https://nebulamarket.xyz/product/discord-real-server-members-4000","source":"NBM","order":96},{"name":"Apple Music+ Head Lifetime","price":"0.75 €","url":"https://nebulamarket.xyz/product/apple-music-head-lifetime","source":"NBM","order":97},{"name":"GTA 5 Accounts (Full Access)","price":"5.95 €","url":"https://nebulamarket.xyz/product/gta-5-accounts-full-access","source":"NBM","order":98},{"name":"Crunchyroll Lifetime [MEGAFAN]","price":"0.24 €","url":"https://nebulamarket.xyz/product/crunchyroll-lifetime-megafan","source":"NBM","order":99},{"name":"Crunchyroll Lifetime [FAN]","price":"0.07 €","url":"https://nebulamarket.xyz/product/crunchyroll-lifetime-fan","source":"NBM","order":100},{"name":"Canva Pro Lifetime [METHOD]","price":"9.95 €","url":"https://nebulamarket.xyz/product/canva-pro-method","source":"NBM","order":101},{"name":"Fast VPN Lifetime [METHOD]","price":"7.95 €","url":"https://nebulamarket.xyz/product/fast-vpn-method","source":"NBM","order":102},{"name":"IpVanish Lifetime","price":"0.45 €","url":"https://nebulamarket.xyz/product/ipvanish-lifetime","source":"NBM","order":103},{"name":"Capcut Pro Lifetime","price":"0.55 €","url":"https://nebulamarket.xyz/product/capcut-pro-lifetime","source":"NBM","order":104},{"name":"Capcut Pro Lifetime FA","price":"1.65 €","url":"https://nebulamarket.xyz/product/capcut-pro-lifetime-fa","source":"NBM","order":105},{"name":"Theme 1 [SELLAUTH]","price":"2.99 €","url":"https://nebulamarket.xyz/product/theme-1-sellauth","source":"NBM","order":106},{"name":"Theme 2 [SELLAUTH]","price":"2.99 €","url":"https://nebulamarket.xyz/product/theme-2-sellauth","source":"NBM","order":107},{"name":"Theme 3 [SELLAUTH]","price":"3.29 €","url":"https://nebulamarket.xyz/product/theme-3-sellauth","source":"NBM","order":108},{"name":"Theme 4 [SELLAUTH]","price":"3.99 €","url":"https://nebulamarket.xyz/product/theme-4-sellauth","source":"NBM","order":109},{"name":"Theme 5 [SELLAUTH]","price":"4.99 €","url":"https://nebulamarket.xyz/product/theme-5-sellauth","source":"NBM","order":110},{"name":"Theme 6 [SELLAUTH] [HOT]","price":"5.99 €","url":"https://nebulamarket.xyz/product/theme-6-sellauth","source":"NBM","order":111},{"name":"Theme 7 [SELLAUTH] [HOT]","price":"5.99 €","url":"https://nebulamarket.xyz/product/theme-7-sellauth","source":"NBM","order":112},{"name":"Theme 8 [SELLAUTH] [BEST]","price":"19.99 €","url":"https://nebulamarket.xyz/product/theme-8-sellauth","source":"NBM","order":113},{"name":"Canva Premium Lifetime","price":"0.49 €","url":"https://nebulamarket.xyz/product/canva-premium","source":"NBM","order":114},{"name":"Canva Premium Keys Lifetime [Your Own Account]","price":"2.35 €","url":"https://nebulamarket.xyz/product/canva-premium-keys-lifetime-your-own-account","source":"NBM","order":115},{"name":"Deezer Premium Lifetime","price":"0.19 €","url":"https://nebulamarket.xyz/product/deezer-premium-lifetime","source":"NBM","order":116},{"name":"Ufc Lifetime [SUB]","price":"0.45 €","url":"https://nebulamarket.xyz/product/ufc-lifetime","source":"NBM","order":117},{"name":"Hotmail/Outlook Accounts Fresh (FA)","price":"0.13 €","url":"https://nebulamarket.xyz/product/hotmail-fa","source":"NBM","order":118},{"name":"Rambler Accounts Fresh (FA)","price":"0.08 €","url":"https://nebulamarket.xyz/product/rambler-fa","source":"NBM","order":119},{"name":"Rockstar Activation Codes","price":"0.18 €","url":"https://nebulamarket.xyz/product/rockstar-activation-codes","source":"NBM","order":120},{"name":"Steam Lifetime [+4 GAMES]","price":"0.04 €","url":"https://nebulamarket.xyz/product/steam-lifetime-1","source":"NBM","order":121},{"name":"Steam Lifetime [0-3 GAMES]","price":"0.02 €","url":"https://nebulamarket.xyz/product/steam-lifetime","source":"NBM","order":122},{"name":"Steam Lifetime [Rust] (Vac Clean)","price":"0.85 €","url":"https://nebulamarket.xyz/product/steam-lifetime-rust","source":"NBM","order":123},{"name":"Steam Lifetime [GTA 5]","price":"0.39 €","url":"https://nebulamarket.xyz/product/steam-lifetime-gta-5","source":"NBM","order":124},{"name":"Steam Lifetime [Among Us]","price":"0.19 €","url":"https://nebulamarket.xyz/product/steam-lifetime-amoung-us","source":"NBM","order":125},{"name":"Steam Lifetime [Schedule I]","price":"2.50 €","url":"https://nebulamarket.xyz/product/steam-lifetime-schedule-i","source":"NBM","order":126},{"name":"Steam Lifetime [Assetto Corsa]","price":"0.30 €","url":"https://nebulamarket.xyz/product/steam-lifetime-assetto-corsa","source":"NBM","order":127},{"name":"Steam Lifetime [FC 25]","price":"0.35 €","url":"https://nebulamarket.xyz/product/steam-lifetime-fc-25","source":"NBM","order":128},{"name":"Steam Lifetime [Euro Truck Simulator 2]","price":"0.21 €","url":"https://nebulamarket.xyz/product/steam-lifetime-euro-truck-simulator-2","source":"NBM","order":129},{"name":"Steam Lifetime [Red Dead Redemption 2]","price":"2.49 €","url":"https://nebulamarket.xyz/product/steam-lifetime-red-dead-redemption-2","source":"NBM","order":130},{"name":"Steam Lifetime [Supermarket Simulator]","price":"3.75 €","url":"https://nebulamarket.xyz/product/steam-lifetime-supermarket-simulator","source":"NBM","order":131},{"name":"Steam Lifetime [Rainbow Six]","price":"0.15 €","url":"https://nebulamarket.xyz/product/steam-lifetime-rainbow-six","source":"NBM","order":132},{"name":"Steam Lifetime [Forza Horizon 5]","price":"2.55 €","url":"https://nebulamarket.xyz/product/steam-lifetime-forza-horizon","source":"NBM","order":133},{"name":"Steam Lifetime [Ready or Not]","price":"2.35 €","url":"https://nebulamarket.xyz/product/steam-lifetime-readyornot","source":"NBM","order":134},{"name":"Steam Lifetime [Resident Evil Village]","price":"0.15 €","url":"https://nebulamarket.xyz/product/steam-lifetime-resident-evil","source":"NBM","order":135},{"name":"Steam Lifetime [Cyberpunk 2077]","price":"3.50 €","url":"https://nebulamarket.xyz/product/steam-lifetime-cyberpunk","source":"NBM","order":136},{"name":"Steam Lifetime [Wallpaper Engine]","price":"0.35 €","url":"https://nebulamarket.xyz/product/steam-lifetime-wallpaper-engine","source":"NBM","order":137},{"name":"Steam Lifetime [Marvel Rivals]","price":"0.05 €","url":"https://nebulamarket.xyz/product/steam-lifetime-marvel-rivals","source":"NBM","order":138},{"name":"Steam Lifetime [Counter Strike 2]","price":"0.04 €","url":"https://nebulamarket.xyz/product/steam-lifetime-counter-strike-2","source":"NBM","order":139},{"name":"Atresplayer Lifetime","price":"0.35 €","url":"https://nebulamarket.xyz/product/atresplayer-lifetime","source":"NBM","order":140},{"name":"Twitch Prime Accounts FA [1 Month]","price":"0.75 €","url":"https://nebulamarket.xyz/product/twitch-prime-accounts-fa","source":"NBM","order":141},{"name":"Viki Lifetime","price":"0.15 €","url":"https://nebulamarket.xyz/product/viki-lifetime","source":"NBM","order":142},{"name":"Uber Eats Discounts [ES]","price":"1.99 €","url":"https://nebulamarket.xyz/product/uber-eats-discounts","source":"NBM","order":143},{"name":"Uber Eats Discounts [FR]","price":"1.99 €","url":"https://nebulamarket.xyz/product/uber-eats-discounts-fr","source":"NBM","order":144},{"name":"Uber Eats Discounts [CA]","price":"1.99 €","url":"https://nebulamarket.xyz/product/uber-eats-discounts-ca","source":"NBM","order":145},{"name":"Uber Eats Discounts [UK]","price":"1.99 €","url":"https://nebulamarket.xyz/product/uber-eats-discounts-uk","source":"NBM","order":146},{"name":"Fivem Ready [Fresh]","price":"0.25 €","url":"https://nebulamarket.xyz/product/fivem-ready","source":"NBM","order":147},{"name":"Express VPN Lifetime","price":"0.25 €","url":"https://nebulamarket.xyz/product/express-vpn","source":"NBM","order":148},{"name":"Nba Lifetime","price":"0.25 €","url":"https://nebulamarket.xyz/product/nba-lifetime","source":"NBM","order":149},{"name":"Paramount+ Lifetime","price":"0.13 €","url":"https://nebulamarket.xyz/product/paramount-lifetime","source":"NBM","order":150},{"name":"Discord Verified Tokens [Email Verified]","price":"0.09 €","url":"https://nebulamarket.xyz/product/discord-verified-tokens","source":"NBM","order":151},{"name":"Microsoft Random Codes","price":"0.25 €","url":"https://nebulamarket.xyz/product/microsoft-random-codes","source":"NBM","order":152},{"name":"Nitro Promo Code 1m","price":"0.35 €","url":"https://nebulamarket.xyz/product/nitro-promo-code-1m","source":"NBM","order":153},{"name":"Nitro Promo Code 3m","price":"0.65 €","url":"https://nebulamarket.xyz/product/nitro-promo-code-3m","source":"NBM","order":154},{"name":"Duolingo Premium Lifetime","price":"0.19 €","url":"https://nebulamarket.xyz/product/duolingo-lifetime","source":"NBM","order":155},{"name":"Amc Plus Lifetime","price":"0.35 €","url":"https://nebulamarket.xyz/product/amc-plus-lifetime","source":"NBM","order":156},{"name":"Pandora Premium Lifetime","price":"0.29 €","url":"https://nebulamarket.xyz/product/pandora-premium-lifetime","source":"NBM","order":157},{"name":"Molotov TV","price":"0.20 €","url":"https://nebulamarket.xyz/product/moloto-tv","source":"NBM","order":158},{"name":"Wondershare Filmora","price":"0.13 €","url":"https://nebulamarket.xyz/product/wondershare-filmora","source":"NBM","order":159},{"name":"Wwe Premium Lifetime","price":"0.35 €","url":"https://nebulamarket.xyz/product/wwe-premium-lifetime","source":"NBM","order":160},{"name":"Claude [Unlimited] — Claude [1 day]","price":"2.50 €","url":"https://resellme.xyz/product/claude-max-monthly","source":"ResellMe","order":0},{"name":"Claude [Unlimited] — Claude [7 days]","price":"9.00 €","url":"https://resellme.xyz/product/claude-max-monthly","source":"ResellMe","order":1},{"name":"Claude [Unlimited] — Claude [14 days]","price":"12.00 €","url":"https://resellme.xyz/product/claude-max-monthly","source":"ResellMe","order":2},{"name":"Claude [Unlimited] — Claude [30 days]","price":"20.00 €","url":"https://resellme.xyz/product/claude-max-monthly","source":"ResellMe","order":3},{"name":"Claude [Unlimited] — Claude [Fable - Astra] [1 day]","price":"5.00 €","url":"https://resellme.xyz/product/claude-max-monthly","source":"ResellMe","order":4},{"name":"Claude [Unlimited] — Claude [Fable - Astra] [7 days]","price":"15.00 €","url":"https://resellme.xyz/product/claude-max-monthly","source":"ResellMe","order":5},{"name":"Spotify Premium — Spotify [AutoPay, F.A.]","price":"2.50 €","url":"https://resellme.xyz/product/spotify-premium-fa","source":"ResellMe","order":6},{"name":"Spotify Premium — Spotify Key [Lifetime Warr.]","price":"5.99 €","url":"https://resellme.xyz/product/spotify-premium-fa","source":"ResellMe","order":7},{"name":"Uber Eats with balance — 18 EUR balance","price":"9.00 €","url":"https://resellme.xyz/product/uber-balance","source":"ResellMe","order":8},{"name":"Uber Eats with balance — 35 EUR balance","price":"17.50 €","url":"https://resellme.xyz/product/uber-balance","source":"ResellMe","order":9},{"name":"Uber Eats with balance — 54 EUR balance","price":"27.00 €","url":"https://resellme.xyz/product/uber-balance","source":"ResellMe","order":10},{"name":"Uber Eats with balance — 65 EUR balance","price":"32.50 €","url":"https://resellme.xyz/product/uber-balance","source":"ResellMe","order":11},{"name":"Uber Eats with balance — 72 EUR balance","price":"36.00 €","url":"https://resellme.xyz/product/uber-balance","source":"ResellMe","order":12},{"name":"Uber Eats with balance — 79 EUR balance","price":"39.50 €","url":"https://resellme.xyz/product/uber-balance","source":"ResellMe","order":13},{"name":"Netflix — España Lifetime","price":"0.95 €","url":"https://resellme.xyz/product/netflix","source":"ResellMe","order":14},{"name":"Netflix — España No Ads","price":"1.75 €","url":"https://resellme.xyz/product/netflix","source":"ResellMe","order":15},{"name":"Netflix — Lifetime Codes","price":"1.50 €","url":"https://resellme.xyz/product/netflix","source":"ResellMe","order":16},{"name":"Netflix — 4K Private Slot","price":"4.00 €","url":"https://resellme.xyz/product/netflix","source":"ResellMe","order":17},{"name":"Netflix — 4K Private Account","price":"7.50 €","url":"https://resellme.xyz/product/netflix","source":"ResellMe","order":18},{"name":"Steam [LIFETIME]","price":"0.05 €","url":"https://resellme.xyz/product/steam-lifetime","source":"ResellMe","order":19},{"name":"Disney+ [LIFETIME] — Only Disney+","price":"0.09 €","url":"https://resellme.xyz/product/disney-plus","source":"ResellMe","order":20},{"name":"Disney+ [LIFETIME] — Disney+ & Hulu","price":"0.15 €","url":"https://resellme.xyz/product/disney-plus","source":"ResellMe","order":21},{"name":"Disney+ [LIFETIME] — Disney+ & Hulu & ESPN+","price":"0.65 €","url":"https://resellme.xyz/product/disney-plus","source":"ResellMe","order":22},{"name":"Disney+ [LIFETIME] — Disney+ Premium","price":"6.99 €","url":"https://resellme.xyz/product/disney-plus","source":"ResellMe","order":23},{"name":"Movistar+ (ES) [Lifetime] — Movistar+ LaLiga (ES)","price":"1.50 €","url":"https://resellme.xyz/product/movistar-laliga-lifetime","source":"ResellMe","order":24},{"name":"Gemini Plus Link — 12 Months","price":"4.21 €","url":"https://resellme.xyz/product/gemini-account-12m","source":"ResellMe","order":25},{"name":"Gemini Plus Link — 6 Months [No card required]","price":"4.00 €","url":"https://resellme.xyz/product/gemini-account-12m","source":"ResellMe","order":26},{"name":"Dazn [LIFETIME] — Random","price":"0.65 €","url":"https://resellme.xyz/product/dazn","source":"ResellMe","order":27},{"name":"Dazn [LIFETIME] — Fútbol ES","price":"0.85 €","url":"https://resellme.xyz/product/dazn","source":"ResellMe","order":28},{"name":"Dazn [LIFETIME] — Motor ES","price":"1.10 €","url":"https://resellme.xyz/product/dazn","source":"ResellMe","order":29},{"name":"Dazn [LIFETIME] — Total ES","price":"3.11 €","url":"https://resellme.xyz/product/dazn","source":"ResellMe","order":30},{"name":"Dazn [LIFETIME] — Premium ES","price":"2.25 €","url":"https://resellme.xyz/product/dazn","source":"ResellMe","order":31},{"name":"Dazn [LIFETIME] — Cuenta para ver el CLÁSICO","price":"1.50 €","url":"https://resellme.xyz/product/dazn","source":"ResellMe","order":32},{"name":"Crunchyroll [LIFETIME] — Fan Member","price":"0.09 €","url":"https://resellme.xyz/product/crunchyroll","source":"ResellMe","order":33},{"name":"Crunchyroll [LIFETIME] — Mega Fan Member","price":"0.15 €","url":"https://resellme.xyz/product/crunchyroll","source":"ResellMe","order":34},{"name":"Crunchyroll [LIFETIME] — Mega Fan Member, Full Access","price":"4.50 €","url":"https://resellme.xyz/product/crunchyroll","source":"ResellMe","order":35},{"name":"Paramount+ [LIFETIME] — USA","price":"0.09 €","url":"https://resellme.xyz/product/paramount-plus","source":"ResellMe","order":36},{"name":"Paramount+ [LIFETIME] — LATAM + EU","price":"0.15 €","url":"https://resellme.xyz/product/paramount-plus","source":"ResellMe","order":37},{"name":"Paramount+ [LIFETIME] — MEXICO + UFC [FA]","price":"1.50 €","url":"https://resellme.xyz/product/paramount-plus","source":"ResellMe","order":38},{"name":"Max [LIFETIME]","price":"0.35 €","url":"https://resellme.xyz/product/max","source":"ResellMe","order":39},{"name":"Max [LIFETIME] — Full Access Lifetime","price":"2.30 €","url":"https://resellme.xyz/product/max","source":"ResellMe","order":40},{"name":"Nba [LIFETIME]","price":"0.09 €","url":"https://resellme.xyz/product/nba-lifetime","source":"ResellMe","order":41},{"name":"ExpressVPN [Phone, LIFETIME] — ExpressVPN (PHONE) [LIFETIME]","price":"0.09 €","url":"https://resellme.xyz/product/expressvpn-lifetime","source":"ResellMe","order":42},{"name":"Capcut [Lifetime]","price":"0.95 €","url":"https://resellme.xyz/product/capcut-lifetime","source":"ResellMe","order":43},{"name":"Capcut [Lifetime] — Full Access Lifetime","price":"2.80 €","url":"https://resellme.xyz/product/capcut-lifetime","source":"ResellMe","order":44},{"name":"Prime Video — 1 Month","price":"1.45 €","url":"https://resellme.xyz/product/prime-video","source":"ResellMe","order":45},{"name":"Prime Video — 6 Months","price":"2.95 €","url":"https://resellme.xyz/product/prime-video","source":"ResellMe","order":46},{"name":"Youtube Prem. [Lifetime Full Access] — Youtube Premium (Full Access) [Lifetime]","price":"2.85 €","url":"https://resellme.xyz/product/youtube-fa","source":"ResellMe","order":47},{"name":"Youtube Prem. [Lifetime Full Access] — YouTube Invitation","price":"2.00 €","url":"https://resellme.xyz/product/youtube-fa","source":"ResellMe","order":48},{"name":"Uber Eats [Discounts] — Uber Eats (Random Offers)","price":"3.50 €","url":"https://resellme.xyz/product/ubereats-discounts","source":"ResellMe","order":49},{"name":"ChatGPT [Unlimited] — 1 Week [Code]","price":"2.75 €","url":"https://resellme.xyz/product/chatgpt-unlimited","source":"ResellMe","order":50},{"name":"ChatGPT [Unlimited] — 1 Month [Code]","price":"6.50 €","url":"https://resellme.xyz/product/chatgpt-unlimited","source":"ResellMe","order":51},{"name":"ChatGPT [Unlimited] — ChatGPT Plus 1 month Real Account","price":"8.99 €","url":"https://resellme.xyz/product/chatgpt-unlimited","source":"ResellMe","order":52},{"name":"ChatGPT [Unlimited] — ChatGPT Plus 1 Month [Shared Account]","price":"3.00 €","url":"https://resellme.xyz/product/chatgpt-unlimited","source":"ResellMe","order":53},{"name":"Stake [Level 2 - 4]","price":"0.30 €","url":"https://resellme.xyz/product/stake","source":"ResellMe","order":54},{"name":"Stake [Level 2 - 4] — Level 4","price":"1.50 €","url":"https://resellme.xyz/product/stake","source":"ResellMe","order":55},{"name":"Nord VPN [LIFETIME]","price":"1.50 €","url":"https://resellme.xyz/product/nordvpn-lifetime","source":"ResellMe","order":56},{"name":"Duolingo — Duolingo [LIFETIME]","price":"0.09 €","url":"https://resellme.xyz/product/duolingo-lifetime","source":"ResellMe","order":57},{"name":"Duolingo — Super Duolingo GiftLink 12 months","price":"3.50 €","url":"https://resellme.xyz/product/duolingo-lifetime","source":"ResellMe","order":58},{"name":"Filmora [Lifetime]","price":"0.15 €","url":"https://resellme.xyz/product/filmora","source":"ResellMe","order":59},{"name":"Cyberghost VPN [LIFETIME] — Cyberghost [LIFETIME]","price":"0.65 €","url":"https://resellme.xyz/product/cyberghost-vpn","source":"ResellMe","order":60},{"name":"Amc+ [LIFETIME]","price":"0.09 €","url":"https://resellme.xyz/product/amc-lifetime","source":"ResellMe","order":61},{"name":"Telepizza [POINTS] — Telepizza (5k-10k)","price":"0.50 €","url":"https://resellme.xyz/product/telepizza-points","source":"ResellMe","order":62},{"name":"Telepizza [POINTS] — Telepizza (10k-15k)","price":"0.75 €","url":"https://resellme.xyz/product/telepizza-points","source":"ResellMe","order":63},{"name":"Telepizza [POINTS] — Telepizza (15k-20k)","price":"1.50 €","url":"https://resellme.xyz/product/telepizza-points","source":"ResellMe","order":64},{"name":"Telepizza [POINTS] — Telepizza (20k+)","price":"4.00 €","url":"https://resellme.xyz/product/telepizza-points","source":"ResellMe","order":65},{"name":"Atresplayer [Lifetime]","price":"0.09 €","url":"https://resellme.xyz/product/atresplayer","source":"ResellMe","order":66},{"name":"IPVanish [Lifetime] — 1 Day [Code]","price":"0.85 €","url":"https://resellme.xyz/product/ipvanish-lifetime","source":"ResellMe","order":67},{"name":"Muse AI Ready Account — 1 Billion Tokens","price":"0.65 €","url":"https://resellme.xyz/product/muse-ai-ready-account","source":"ResellMe","order":68}]</script>
+<script>
+const catalog=JSON.parse(document.getElementById('catalog').textContent);
+const $=id=>document.getElementById(id);
+const state={query:'',store:'all',min:'',max:'',sort:'relevance',compact:false};
+const euro=v=>new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(v);
+const priceOf=p=>{const n=String(p.price).replace(',','.').match(/-?\d+(?:\.\d+)?/);return n?Number(n[0]):NaN};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function category(name){
+ const s=name.toLowerCase();
+ const groups=[
+  ['Streaming',['netflix','spotify','disney','prime video','youtube','hbo','hbomax','crunchyroll','dazn','movistar','paramount','atresplayer','amc+','nba']],
+  ['IA & productividad',['chatgpt','chatgpt','claude','gemini','muse ai','filmora','capcut']],
+  ['Gaming',['roblox','fortnite','[ fn','valorant','brawl','clash royale','apex','cs2','minecraft','gta','steam']],
+  ['VPN & privacidad',['vpn','nord','surfshark','expressvpn','cyberghost','ipvanish']],
+  ['Social & comunidad',['discord','server members']],
+  ['Servicios & saldo',['uber','telepizza','stake','duolingo']]
+ ];
+ for(const [label,keys] of groups)if(keys.some(k=>s.includes(k)))return label;
+ return 'Digital';
+}
+function tagsFor(p){
+ const tags=[category(p.name)];
+ const n=p.name.toLowerCase();
+ if(/lifetime|\blife\b/i.test(n))tags.push('Lifetime');
+ else if(/month|months|\bday|days|week|weeks|year/i.test(n))tags.push('Duración');
+ if(/full access|\bfa\b/i.test(n))tags.push('Full access');
+ if(/spain|es\\]|\\(es\\)|\beu\b/i.test(n))tags.push('Región específica');
+ return [...new Set(tags)].slice(0,3);
+}
+
+// Normalización tolerante: ignora mayúsculas, tildes y separadores.
+function normalizeSearch(value){
+ return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .toLocaleLowerCase('es').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
+}
+function editDistance(a,b,limit=2){
+ if(Math.abs(a.length-b.length)>limit)return limit+1;
+ let prev=Array.from({length:b.length+1},(_,i)=>i), curr=new Array(b.length+1);
+ for(let i=1;i<=a.length;i++){
+  curr[0]=i;let rowMin=i;
+  for(let j=1;j<=b.length;j++){
+   curr[j]=Math.min(curr[j-1]+1,prev[j]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+   if(curr[j]<rowMin)rowMin=curr[j];
+  }
+  if(rowMin>limit)return limit+1;
+  [prev,curr]=[curr,prev];
+ }
+ return prev[b.length];
+}
+function longestCommonRun(a,b){
+ if(!a||!b)return 0;
+ let prev=new Array(b.length+1).fill(0),best=0;
+ for(let i=1;i<=a.length;i++){
+  const curr=new Array(b.length+1).fill(0);
+  for(let j=1;j<=b.length;j++)if(a[i-1]===b[j-1]){
+   curr[j]=prev[j-1]+1;if(curr[j]>best)best=curr[j];
+  }
+  prev=curr;
+ }
+ return best;
+}
+function searchScore(product,query){
+ const q=normalizeSearch(query);
+ if(!q)return 1;
+ const name=normalizeSearch(product.name), url=normalizeSearch(product.url);
+ const store=normalizeSearch(product.source), cat=normalizeSearch(category(product.name));
+ const full=[name,url,store,cat].join(' ');
+ const qTokens=q.split(' ').filter(Boolean);
+ const nameTokens=name.split(' ').filter(Boolean);
+ const allTokens=full.split(' ').filter(Boolean);
+ let score=0,matched=0,matchedChars=0;
+ if(name===q)return 10000;
+ if(name.includes(q))score+=1800+q.length*12;
+ else if(full.includes(q))score+=900+q.length*6;
+ for(const term of qTokens){
+  if(term.length<3)continue;
+  let best=0,bestLen=0;
+  for(const token of allTokens){
+   let s=0;
+   if(token===term)s=500+term.length*8;
+   else if(token.startsWith(term))s=380+term.length*6;
+   else if(token.includes(term)||term.includes(token))s=260+Math.min(term.length,token.length)*5;
+   else{
+    const run=longestCommonRun(term,token);
+    if(run>=3)s=Math.max(s,95+run*9);
+    const maxEdits=term.length>=8?2:term.length>=5?1:0;
+    if(maxEdits){
+     const d=editDistance(term,token,maxEdits);
+     if(d<=maxEdits)s=Math.max(s,210-d*55+Math.min(term.length,token.length)*3);
+    }
+   }
+   if(s>best){best=s;bestLen=Math.min(term.length,token.length);}
+  }
+  if(best>0){matched++;matchedChars+=bestLen;score+=best;}
+ }
+ // Si la consulta completa es una secuencia parcialmente escrita, admitirla
+ // desde 3 caracteres, pero con menor prioridad que coincidencias de palabra.
+ if(matched===0&&q.length>=3){
+  const run=Math.max(longestCommonRun(q,name),longestCommonRun(name,q));
+  if(run>=3)score=70+run*8;
+ }
+ if(matched>0){
+  score+=matched*90+(matched/qTokens.filter(t=>t.length>=3).length)*180;
+  if(name.includes(q))score+=1200;
+  if(name.startsWith(q))score+=700;
+ }
+ return score;
+}
+function filtered(){
+ const q=state.query.trim();
+ let arr=catalog.map((p,index)=>({...p,__index:index,__score:q?searchScore(p,q):0})).filter(p=>{
+  if(q&&p.__score<=0)return false;
+  if(state.store!=='all'&&p.source!==state.store)return false;
+  const price=priceOf(p);
+  if(state.min!==''&&(!Number.isFinite(price)||price<Number(state.min)))return false;
+  if(state.max!==''&&(!Number.isFinite(price)||price>Number(state.max)))return false;
+  return true;
+ });
+ if(state.sort==='low')arr.sort((a,b)=>priceOf(a)-priceOf(b)||b.__score-a.__score);
+ else if(state.sort==='high')arr.sort((a,b)=>priceOf(b)-priceOf(a)||b.__score-a.__score);
+ else if(state.sort==='az')arr.sort((a,b)=>a.name.localeCompare(b.name,'es'));
+ else if(state.sort==='za')arr.sort((a,b)=>b.name.localeCompare(a.name,'es'));
+ else if(q)arr.sort((a,b)=>b.__score-a.__score||a.__index-b.__index);
+ else arr.sort((a,b)=>a.__index-b.__index);
+ return arr;
+}
+function render(){
+ const arr=filtered();$('count').textContent=arr.length.toLocaleString('es-ES');
+ $('filterStatus').textContent=(state.query||state.store!=='all'||state.min!==''||state.max!==''?'FILTROS ACTIVOS':'MOSTRANDO TODO EL CATÁLOGO');
+ $('clear').classList.toggle('show',!!state.query);
+ $('empty').classList.toggle('show',arr.length===0);
+ $('grid').style.display=arr.length?'grid':'none';
+ $('grid').classList.toggle('compact',state.compact);
+ $('grid').innerHTML=arr.map((p,i)=>{
+  const price=priceOf(p),source=p.source==='ResellMe'?'resell':'';
+  const index=(p.__index??catalog.indexOf(p))+1;
+  return `<article class="card" style="animation-delay:${Math.min(i%18,12)*28}ms">
+   <div class="card-top"><span class="store ${source}"><i class="store-mark"></i>${esc(p.source)}</span><span class="product-index">#${String(index).padStart(3,'0')}</span></div>
+   <div class="product-name">${esc(p.name)}</div>
+   <div class="tags">${tagsFor(p).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+   <div class="card-bottom"><div class="price">${Number.isFinite(price)?euro(price):esc(p.price)}<small>EUR</small></div>
+    <div class="card-actions"><button class="icon-btn details-btn" data-index="${index-1}" aria-label="Ver detalles" title="Ver detalles"><svg viewBox="0 0 24 24" fill="none"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.6"/></svg></button><a class="icon-btn" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir producto" title="Abrir producto"><svg viewBox="0 0 24 24" fill="none"><path d="M14 4h6v6M20 4l-9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a></div>
+   </div></article>`;
+ }).join('');
+}
+function sync(){state.query=$('q').value;state.store=$('store').value;state.min=$('minPrice').value;state.max=$('maxPrice').value;state.sort=$('sort').value;state.compact=$('compact').checked;render()}
+['q','store','minPrice','maxPrice','sort','compact'].forEach(id=>$(id).addEventListener(id==='q'||id.includes('Price')?'input':'change',sync));
+$('clear').addEventListener('click',()=>{$('q').value='';sync();$('q').focus()});
+$('reset').addEventListener('click',()=>{$('q').value='';$('store').value='all';$('minPrice').value='';$('maxPrice').value='';$('sort').value='relevance';$('compact').checked=false;sync()});
+function openDetails(p){
+ const price=priceOf(p);$('modalStore').textContent='SOURCE / '+p.source.toUpperCase();
+ $('modalTitle').textContent=p.name;$('modalPrice').textContent=Number.isFinite(price)?euro(price):p.price;
+ $('modalSource').textContent=p.source;$('modalCategory').textContent=category(p.name);
+ $('modalUrl').textContent=p.url;$('visitLink').href=p.url;$('copyLink').dataset.url=p.url;
+ $('backdrop').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeDetails(){$('backdrop').classList.remove('open');document.body.style.overflow=''}
+$('grid').addEventListener('click',e=>{const b=e.target.closest('.details-btn');if(b)openDetails(catalog[Number(b.dataset.index)])});
+$('modalClose').addEventListener('click',closeDetails);
+$('backdrop').addEventListener('click',e=>{if(e.target===$('backdrop'))closeDetails()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetails();if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();$('q').focus()}});
+$('copyLink').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('copyLink').dataset.url);toast('Enlace copiado al portapapeles')}catch{toast('No se pudo copiar automáticamente')}});
+let toastTimer;function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),1900)}
+$('totalStat').textContent=catalog.length.toLocaleString('es-ES');
+render();
+</script>
+</body></html>
