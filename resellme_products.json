@@ -1,347 +1,416 @@
 [
   {
     "name": "Claude [Unlimited] — Claude [1 day]",
-    "price": "2.50 €",
-    "url": "https://resellme.xyz/product/claude-max-monthly"
+    "price": "4.50 €",
+    "url": "https://resellme.xyz/product/claude-max-monthly",
+    "id": "PRD-162"
   },
   {
     "name": "Claude [Unlimited] — Claude [7 days]",
-    "price": "9.00 €",
-    "url": "https://resellme.xyz/product/claude-max-monthly"
+    "price": "11.00 €",
+    "url": "https://resellme.xyz/product/claude-max-monthly",
+    "id": "PRD-163"
   },
   {
     "name": "Claude [Unlimited] — Claude [14 days]",
-    "price": "12.00 €",
-    "url": "https://resellme.xyz/product/claude-max-monthly"
+    "price": "14.00 €",
+    "url": "https://resellme.xyz/product/claude-max-monthly",
+    "id": "PRD-164"
   },
   {
     "name": "Claude [Unlimited] — Claude [30 days]",
-    "price": "20.00 €",
-    "url": "https://resellme.xyz/product/claude-max-monthly"
+    "price": "22.00 €",
+    "url": "https://resellme.xyz/product/claude-max-monthly",
+    "id": "PRD-165"
   },
   {
     "name": "Claude [Unlimited] — Claude [Fable - Astra] [1 day]",
-    "price": "5.00 €",
-    "url": "https://resellme.xyz/product/claude-max-monthly"
+    "price": "7.00 €",
+    "url": "https://resellme.xyz/product/claude-max-monthly",
+    "id": "PRD-166"
   },
   {
     "name": "Claude [Unlimited] — Claude [Fable - Astra] [7 days]",
-    "price": "15.00 €",
-    "url": "https://resellme.xyz/product/claude-max-monthly"
+    "price": "17.00 €",
+    "url": "https://resellme.xyz/product/claude-max-monthly",
+    "id": "PRD-167"
   },
   {
     "name": "Spotify Premium — Spotify [AutoPay, F.A.]",
-    "price": "2.50 €",
-    "url": "https://resellme.xyz/product/spotify-premium-fa"
+    "price": "4.50 €",
+    "url": "https://resellme.xyz/product/spotify-premium-fa",
+    "id": "PRD-168"
   },
   {
     "name": "Spotify Premium — Spotify Key [Lifetime Warr.]",
-    "price": "5.99 €",
-    "url": "https://resellme.xyz/product/spotify-premium-fa"
+    "price": "7.99 €",
+    "url": "https://resellme.xyz/product/spotify-premium-fa",
+    "id": "PRD-169"
   },
   {
     "name": "Uber Eats with balance — 18 EUR balance",
-    "price": "9.00 €",
-    "url": "https://resellme.xyz/product/uber-balance"
+    "price": "11.00 €",
+    "url": "https://resellme.xyz/product/uber-balance",
+    "id": "PRD-170"
   },
   {
     "name": "Uber Eats with balance — 35 EUR balance",
-    "price": "17.50 €",
-    "url": "https://resellme.xyz/product/uber-balance"
+    "price": "19.50 €",
+    "url": "https://resellme.xyz/product/uber-balance",
+    "id": "PRD-171"
   },
   {
     "name": "Uber Eats with balance — 54 EUR balance",
-    "price": "27.00 €",
-    "url": "https://resellme.xyz/product/uber-balance"
+    "price": "29.00 €",
+    "url": "https://resellme.xyz/product/uber-balance",
+    "id": "PRD-172"
   },
   {
     "name": "Uber Eats with balance — 65 EUR balance",
-    "price": "32.50 €",
-    "url": "https://resellme.xyz/product/uber-balance"
+    "price": "34.50 €",
+    "url": "https://resellme.xyz/product/uber-balance",
+    "id": "PRD-173"
   },
   {
     "name": "Uber Eats with balance — 72 EUR balance",
-    "price": "36.00 €",
-    "url": "https://resellme.xyz/product/uber-balance"
+    "price": "38.00 €",
+    "url": "https://resellme.xyz/product/uber-balance",
+    "id": "PRD-174"
   },
   {
     "name": "Uber Eats with balance — 79 EUR balance",
-    "price": "39.50 €",
-    "url": "https://resellme.xyz/product/uber-balance"
+    "price": "41.50 €",
+    "url": "https://resellme.xyz/product/uber-balance",
+    "id": "PRD-175"
   },
   {
     "name": "Netflix — España Lifetime",
-    "price": "0.95 €",
-    "url": "https://resellme.xyz/product/netflix"
+    "price": "2.95 €",
+    "url": "https://resellme.xyz/product/netflix",
+    "id": "PRD-176"
   },
   {
     "name": "Netflix — España No Ads",
-    "price": "1.75 €",
-    "url": "https://resellme.xyz/product/netflix"
+    "price": "3.75 €",
+    "url": "https://resellme.xyz/product/netflix",
+    "id": "PRD-177"
   },
   {
     "name": "Netflix — Lifetime Codes",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/netflix"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/netflix",
+    "id": "PRD-178"
   },
   {
     "name": "Netflix — 4K Private Slot",
-    "price": "4.00 €",
-    "url": "https://resellme.xyz/product/netflix"
+    "price": "6.00 €",
+    "url": "https://resellme.xyz/product/netflix",
+    "id": "PRD-179"
   },
   {
     "name": "Netflix — 4K Private Account",
-    "price": "7.50 €",
-    "url": "https://resellme.xyz/product/netflix"
+    "price": "9.50 €",
+    "url": "https://resellme.xyz/product/netflix",
+    "id": "PRD-180"
   },
   {
     "name": "Steam [LIFETIME]",
-    "price": "0.05 €",
-    "url": "https://resellme.xyz/product/steam-lifetime"
+    "price": "2.05 €",
+    "url": "https://resellme.xyz/product/steam-lifetime",
+    "id": "PRD-181"
   },
   {
     "name": "Disney+ [LIFETIME] — Only Disney+",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/disney-plus"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/disney-plus",
+    "id": "PRD-182"
   },
   {
     "name": "Disney+ [LIFETIME] — Disney+ & Hulu",
-    "price": "0.15 €",
-    "url": "https://resellme.xyz/product/disney-plus"
+    "price": "2.15 €",
+    "url": "https://resellme.xyz/product/disney-plus",
+    "id": "PRD-183"
   },
   {
     "name": "Disney+ [LIFETIME] — Disney+ & Hulu & ESPN+",
-    "price": "0.65 €",
-    "url": "https://resellme.xyz/product/disney-plus"
+    "price": "2.65 €",
+    "url": "https://resellme.xyz/product/disney-plus",
+    "id": "PRD-184"
   },
   {
     "name": "Disney+ [LIFETIME] — Disney+ Premium",
-    "price": "6.99 €",
-    "url": "https://resellme.xyz/product/disney-plus"
+    "price": "8.99 €",
+    "url": "https://resellme.xyz/product/disney-plus",
+    "id": "PRD-185"
   },
   {
     "name": "Movistar+ (ES) [Lifetime] — Movistar+ LaLiga (ES)",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/movistar-laliga-lifetime"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/movistar-laliga-lifetime",
+    "id": "PRD-186"
   },
   {
     "name": "Gemini Plus Link — 12 Months",
-    "price": "4.21 €",
-    "url": "https://resellme.xyz/product/gemini-account-12m"
+    "price": "6.21 €",
+    "url": "https://resellme.xyz/product/gemini-account-12m",
+    "id": "PRD-187"
   },
   {
     "name": "Gemini Plus Link — 6 Months [No card required]",
-    "price": "4.00 €",
-    "url": "https://resellme.xyz/product/gemini-account-12m"
+    "price": "6.00 €",
+    "url": "https://resellme.xyz/product/gemini-account-12m",
+    "id": "PRD-188"
   },
   {
     "name": "Dazn [LIFETIME] — Random",
-    "price": "0.65 €",
-    "url": "https://resellme.xyz/product/dazn"
+    "price": "2.65 €",
+    "url": "https://resellme.xyz/product/dazn",
+    "id": "PRD-189"
   },
   {
     "name": "Dazn [LIFETIME] — Fútbol ES",
-    "price": "0.85 €",
-    "url": "https://resellme.xyz/product/dazn"
+    "price": "2.85 €",
+    "url": "https://resellme.xyz/product/dazn",
+    "id": "PRD-190"
   },
   {
     "name": "Dazn [LIFETIME] — Motor ES",
-    "price": "1.10 €",
-    "url": "https://resellme.xyz/product/dazn"
+    "price": "3.10 €",
+    "url": "https://resellme.xyz/product/dazn",
+    "id": "PRD-191"
   },
   {
     "name": "Dazn [LIFETIME] — Total ES",
-    "price": "3.11 €",
-    "url": "https://resellme.xyz/product/dazn"
+    "price": "5.11 €",
+    "url": "https://resellme.xyz/product/dazn",
+    "id": "PRD-192"
   },
   {
     "name": "Dazn [LIFETIME] — Premium ES",
-    "price": "2.25 €",
-    "url": "https://resellme.xyz/product/dazn"
+    "price": "4.25 €",
+    "url": "https://resellme.xyz/product/dazn",
+    "id": "PRD-193"
   },
   {
     "name": "Dazn [LIFETIME] — Cuenta para ver el CLÁSICO",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/dazn"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/dazn",
+    "id": "PRD-194"
   },
   {
     "name": "Crunchyroll [LIFETIME] — Fan Member",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/crunchyroll"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/crunchyroll",
+    "id": "PRD-195"
   },
   {
     "name": "Crunchyroll [LIFETIME] — Mega Fan Member",
-    "price": "0.15 €",
-    "url": "https://resellme.xyz/product/crunchyroll"
+    "price": "2.15 €",
+    "url": "https://resellme.xyz/product/crunchyroll",
+    "id": "PRD-196"
   },
   {
     "name": "Crunchyroll [LIFETIME] — Mega Fan Member, Full Access",
-    "price": "4.50 €",
-    "url": "https://resellme.xyz/product/crunchyroll"
+    "price": "6.50 €",
+    "url": "https://resellme.xyz/product/crunchyroll",
+    "id": "PRD-197"
   },
   {
     "name": "Paramount+ [LIFETIME] — USA",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/paramount-plus"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/paramount-plus",
+    "id": "PRD-198"
   },
   {
     "name": "Paramount+ [LIFETIME] — LATAM + EU",
-    "price": "0.15 €",
-    "url": "https://resellme.xyz/product/paramount-plus"
+    "price": "2.15 €",
+    "url": "https://resellme.xyz/product/paramount-plus",
+    "id": "PRD-199"
   },
   {
     "name": "Paramount+ [LIFETIME] — MEXICO + UFC [FA]",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/paramount-plus"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/paramount-plus",
+    "id": "PRD-200"
   },
   {
     "name": "Max [LIFETIME]",
-    "price": "0.35 €",
-    "url": "https://resellme.xyz/product/max"
+    "price": "2.35 €",
+    "url": "https://resellme.xyz/product/max",
+    "id": "PRD-201"
   },
   {
     "name": "Max [LIFETIME] — Full Access Lifetime",
-    "price": "2.30 €",
-    "url": "https://resellme.xyz/product/max"
+    "price": "4.30 €",
+    "url": "https://resellme.xyz/product/max",
+    "id": "PRD-202"
   },
   {
     "name": "Nba [LIFETIME]",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/nba-lifetime"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/nba-lifetime",
+    "id": "PRD-203"
   },
   {
     "name": "ExpressVPN [Phone, LIFETIME] — ExpressVPN (PHONE) [LIFETIME]",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/expressvpn-lifetime"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/expressvpn-lifetime",
+    "id": "PRD-204"
   },
   {
     "name": "Capcut [Lifetime]",
-    "price": "0.95 €",
-    "url": "https://resellme.xyz/product/capcut-lifetime"
+    "price": "2.95 €",
+    "url": "https://resellme.xyz/product/capcut-lifetime",
+    "id": "PRD-205"
   },
   {
     "name": "Capcut [Lifetime] — Full Access Lifetime",
-    "price": "2.80 €",
-    "url": "https://resellme.xyz/product/capcut-lifetime"
+    "price": "4.80 €",
+    "url": "https://resellme.xyz/product/capcut-lifetime",
+    "id": "PRD-206"
   },
   {
     "name": "Prime Video — 1 Month",
-    "price": "1.45 €",
-    "url": "https://resellme.xyz/product/prime-video"
+    "price": "3.45 €",
+    "url": "https://resellme.xyz/product/prime-video",
+    "id": "PRD-207"
   },
   {
     "name": "Prime Video — 6 Months",
-    "price": "2.95 €",
-    "url": "https://resellme.xyz/product/prime-video"
+    "price": "4.95 €",
+    "url": "https://resellme.xyz/product/prime-video",
+    "id": "PRD-208"
   },
   {
     "name": "Youtube Prem. [Lifetime Full Access] — Youtube Premium (Full Access) [Lifetime]",
-    "price": "2.85 €",
-    "url": "https://resellme.xyz/product/youtube-fa"
+    "price": "4.85 €",
+    "url": "https://resellme.xyz/product/youtube-fa",
+    "id": "PRD-209"
   },
   {
     "name": "Youtube Prem. [Lifetime Full Access] — YouTube Invitation",
-    "price": "2.00 €",
-    "url": "https://resellme.xyz/product/youtube-fa"
+    "price": "4.00 €",
+    "url": "https://resellme.xyz/product/youtube-fa",
+    "id": "PRD-210"
   },
   {
     "name": "Uber Eats [Discounts] — Uber Eats (Random Offers)",
-    "price": "3.50 €",
-    "url": "https://resellme.xyz/product/ubereats-discounts"
+    "price": "5.50 €",
+    "url": "https://resellme.xyz/product/ubereats-discounts",
+    "id": "PRD-211"
   },
   {
     "name": "ChatGPT [Unlimited] — 1 Week [Code]",
-    "price": "2.75 €",
-    "url": "https://resellme.xyz/product/chatgpt-unlimited"
+    "price": "4.75 €",
+    "url": "https://resellme.xyz/product/chatgpt-unlimited",
+    "id": "PRD-212"
   },
   {
     "name": "ChatGPT [Unlimited] — 1 Month [Code]",
-    "price": "6.50 €",
-    "url": "https://resellme.xyz/product/chatgpt-unlimited"
+    "price": "8.50 €",
+    "url": "https://resellme.xyz/product/chatgpt-unlimited",
+    "id": "PRD-213"
   },
   {
     "name": "ChatGPT [Unlimited] — ChatGPT Plus 1 month Real Account",
-    "price": "8.99 €",
-    "url": "https://resellme.xyz/product/chatgpt-unlimited"
+    "price": "10.99 €",
+    "url": "https://resellme.xyz/product/chatgpt-unlimited",
+    "id": "PRD-214"
   },
   {
     "name": "ChatGPT [Unlimited] — ChatGPT Plus 1 Month [Shared Account]",
-    "price": "3.00 €",
-    "url": "https://resellme.xyz/product/chatgpt-unlimited"
+    "price": "5.00 €",
+    "url": "https://resellme.xyz/product/chatgpt-unlimited",
+    "id": "PRD-215"
   },
   {
     "name": "Stake [Level 2 - 4]",
-    "price": "0.30 €",
-    "url": "https://resellme.xyz/product/stake"
+    "price": "2.30 €",
+    "url": "https://resellme.xyz/product/stake",
+    "id": "PRD-216"
   },
   {
     "name": "Stake [Level 2 - 4] — Level 4",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/stake"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/stake",
+    "id": "PRD-217"
   },
   {
     "name": "Nord VPN [LIFETIME]",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/nordvpn-lifetime"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/nordvpn-lifetime",
+    "id": "PRD-218"
   },
   {
     "name": "Duolingo — Duolingo [LIFETIME]",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/duolingo-lifetime"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/duolingo-lifetime",
+    "id": "PRD-219"
   },
   {
     "name": "Duolingo — Super Duolingo GiftLink 12 months",
-    "price": "3.50 €",
-    "url": "https://resellme.xyz/product/duolingo-lifetime"
+    "price": "5.50 €",
+    "url": "https://resellme.xyz/product/duolingo-lifetime",
+    "id": "PRD-220"
   },
   {
     "name": "Filmora [Lifetime]",
-    "price": "0.15 €",
-    "url": "https://resellme.xyz/product/filmora"
+    "price": "2.15 €",
+    "url": "https://resellme.xyz/product/filmora",
+    "id": "PRD-221"
   },
   {
     "name": "Cyberghost VPN [LIFETIME] — Cyberghost [LIFETIME]",
-    "price": "0.65 €",
-    "url": "https://resellme.xyz/product/cyberghost-vpn"
+    "price": "2.65 €",
+    "url": "https://resellme.xyz/product/cyberghost-vpn",
+    "id": "PRD-222"
   },
   {
     "name": "Amc+ [LIFETIME]",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/amc-lifetime"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/amc-lifetime",
+    "id": "PRD-223"
   },
   {
     "name": "Telepizza [POINTS] — Telepizza (5k-10k)",
-    "price": "0.50 €",
-    "url": "https://resellme.xyz/product/telepizza-points"
+    "price": "2.50 €",
+    "url": "https://resellme.xyz/product/telepizza-points",
+    "id": "PRD-224"
   },
   {
     "name": "Telepizza [POINTS] — Telepizza (10k-15k)",
-    "price": "0.75 €",
-    "url": "https://resellme.xyz/product/telepizza-points"
+    "price": "2.75 €",
+    "url": "https://resellme.xyz/product/telepizza-points",
+    "id": "PRD-225"
   },
   {
     "name": "Telepizza [POINTS] — Telepizza (15k-20k)",
-    "price": "1.50 €",
-    "url": "https://resellme.xyz/product/telepizza-points"
+    "price": "3.50 €",
+    "url": "https://resellme.xyz/product/telepizza-points",
+    "id": "PRD-226"
   },
   {
     "name": "Telepizza [POINTS] — Telepizza (20k+)",
-    "price": "4.00 €",
-    "url": "https://resellme.xyz/product/telepizza-points"
+    "price": "6.00 €",
+    "url": "https://resellme.xyz/product/telepizza-points",
+    "id": "PRD-227"
   },
   {
     "name": "Atresplayer [Lifetime]",
-    "price": "0.09 €",
-    "url": "https://resellme.xyz/product/atresplayer"
+    "price": "2.09 €",
+    "url": "https://resellme.xyz/product/atresplayer",
+    "id": "PRD-228"
   },
   {
     "name": "IPVanish [Lifetime] — 1 Day [Code]",
-    "price": "0.85 €",
-    "url": "https://resellme.xyz/product/ipvanish-lifetime"
+    "price": "2.85 €",
+    "url": "https://resellme.xyz/product/ipvanish-lifetime",
+    "id": "PRD-229"
   },
   {
     "name": "Muse AI Ready Account — 1 Billion Tokens",
-    "price": "0.65 €",
-    "url": "https://resellme.xyz/product/muse-ai-ready-account"
+    "price": "2.65 €",
+    "url": "https://resellme.xyz/product/muse-ai-ready-account",
+    "id": "PRD-230"
   }
 ]
